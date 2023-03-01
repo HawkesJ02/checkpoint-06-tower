@@ -1,6 +1,6 @@
 <template>
-  <div v-for="e in event">
-    <EventCard :event="e" />
+  <div v-for="e in events">
+    <EventCard :events="e" />
   </div>
 </template>
 
@@ -35,7 +35,8 @@ export default {
       account: computed(() => AppState.account),
       events: computed(() => AppState.events),
     }
-  }
+  },
+  components: { EventCard, }
 }
 </script>
 

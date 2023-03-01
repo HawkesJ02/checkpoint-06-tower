@@ -9,7 +9,6 @@ class EventsService{
     const res = await api.get('/api/events')
     logger.log(res.data, 'RESPONSE DATA ')
     AppState.events = res.data.map(e => new Event(e))
-    // AppState.events = res.data
   }
 }
 
