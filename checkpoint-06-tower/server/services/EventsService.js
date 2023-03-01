@@ -14,6 +14,15 @@ class EventsService{
     if (event.creatorId.toString() != requestorId || event.isCanceled == true){
       throw new Forbidden('You are not allowed to perform this action')
     } 
+    event.name = eventData.name || event.name
+    event.description = eventData.description || event.description
+    event.coverImg = eventData.coverImg || event.coverImg
+    event.location = eventData.location || event.location
+    event.capacity = eventData.capacity || event.capacity
+    event.startDate = eventData.startDate || event.startDate
+
+    await event.save()
+    return event
   }
 
   async cancel_event(eventId, requestorId) {

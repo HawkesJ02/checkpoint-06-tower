@@ -31,13 +31,12 @@ export class EventsController extends BaseController {
   async get_all_events(req, res, next){
     try {
       const events = await eventsService.get_all_events()
-      res.send(events)
+      return res.send(events)
     } catch (error) {
       next(error)
     }
   }
 
-  // TODO ASK :) VVV
   async get_event_by_id(req, res, next){
     try {
       const eventId = req.params.eventId
