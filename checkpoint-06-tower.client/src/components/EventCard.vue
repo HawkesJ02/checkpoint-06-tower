@@ -1,8 +1,11 @@
 <template>
   <div class="card p-3">
-    <div class="d-flex flex-row">
-      {{ events.name }}
-    </div>
+    <router-link :to="{ name: 'Event', params: { id: events.id } }">
+      <div class="d-flex flex-row">
+        {{ events.name }}
+      </div>
+    </router-link>
+
   </div>
 </template>
 
