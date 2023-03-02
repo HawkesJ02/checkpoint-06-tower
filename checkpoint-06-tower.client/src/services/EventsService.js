@@ -23,6 +23,12 @@ class EventsService{
     return res.data
   }
 
+  async cancel_selected_event(event_id){
+    const res = await api.delete('api/events/' + event_id)
+    logger.log('CANCELED EVENT', res.data)
+    AppState.events = new Event(res.data)
+  }
+
 
   // TODO Come back to this
   async get_selected_event_tickets(eventId){

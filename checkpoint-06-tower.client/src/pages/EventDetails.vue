@@ -6,6 +6,9 @@
           {{ events.name }}
           {{ events.description }}
         </div>
+        <div class="col-12">
+          <button @click="cancel_selected_event(events.id)" class="bt">CANCEL EVENT</button>
+        </div>
       </div>
       <div class="row">
         <div class="col-12">
@@ -40,6 +43,7 @@ export default {
       }
     }
 
+
     async function get_selected_event_tickets() {
       try {
         const event_id = route.params.id
@@ -60,7 +64,20 @@ export default {
       eventsService.dump_events();
     })
     return {
-      events: computed(() => AppState.events)
+      events: computed(() => AppState.events),
+
+      async cancel_selected_event() {
+        try {
+          const event_id = route.params.id
+          if (await Pop.confirm()) {
+            await eventsService.cancel_selected_event(event_id)
+          }
+        } catch (error) {
+          Pop.error(error.message)
+          logger.error(error)
+        }
+      }
+
     }
   },
 }
