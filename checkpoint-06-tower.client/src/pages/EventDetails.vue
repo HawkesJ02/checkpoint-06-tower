@@ -33,6 +33,7 @@ import { onUnmounted } from "vue";
 import { computed } from "vue";
 import { ticketsService } from '../services/TicketsService';
 import { eventsService } from "../services/EventsService";
+import { commentsService } from "../services/CommentsService";
 import { logger } from "../utils/Logger";
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState";
@@ -70,6 +71,7 @@ export default {
     onUnmounted(() => {
       eventsService.dump_events();
       ticketsService.dump_tickets();
+      commentsService.dump_comments();
     })
     return {
       events: computed(() => AppState.events),

@@ -12,6 +12,15 @@ class CommentsService {
     AppState.comments = res.data.map(c => new Comment(c))
   }
 
+  async create_comment(comment_data){
+    const res = await api.post('api/comments', comment_data)
+    AppState.comments.push(new Comment(res.data))
+    return res.data
+  }
+
+  dump_comments(){
+    AppState.comments = []
+  }
 }
 
 export const commentsService = new CommentsService()

@@ -35,6 +35,9 @@ return ticket
   async  create_ticket(ticket_data) {
     const event = await eventsService.get_event_by_id
     (ticket_data.eventId)
+    if (event.capacity <= 0) {
+      throw new BadRequest('Event full!')
+    }
     const ticket = await dbContext.Tickets
     .create(ticket_data)
     await ticket.populate('profile', 'name picture')
