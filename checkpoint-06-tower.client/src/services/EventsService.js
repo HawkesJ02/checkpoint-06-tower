@@ -40,6 +40,12 @@ class EventsService{
   dump_events(){
     AppState.events = []
   }
+
+  async create_ticket(ticket_data){
+    const res = await api.post('api/tickets', ticket_data)
+    logger.log('BECOMING TICKET HOLDER HOPEUFLLY', res.data)
+    
+  }
 }
 
 export const eventsService = new EventsService()

@@ -7,7 +7,8 @@
           {{ events.description }}
         </div>
         <div class="col-12">
-          <button @click="cancel_selected_event(events.id)" class="bt">CANCEL EVENT</button>
+          <button @click="cancel_selected_event(events.id)" class="btn btn-danger">CANCEL EVENT</button>
+          <button @click="create_ticket(events.id)" class="btn btn-info">Get Tickets</button>
         </div>
       </div>
       <div class="row">
@@ -72,6 +73,15 @@ export default {
           if (await Pop.confirm()) {
             await eventsService.cancel_selected_event(event_id)
           }
+        } catch (error) {
+          Pop.error(error.message)
+          logger.error(error)
+        }
+      },
+
+      async create_ticket() {
+        try {
+          await eventsService.create_ticket({ id: route.params.id })
         } catch (error) {
           Pop.error(error.message)
           logger.error(error)
