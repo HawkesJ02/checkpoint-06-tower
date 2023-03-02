@@ -1,6 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
+      <div class="col-12">
+        <EventForm />
+        <div class="btn btn-primary">CREATE EVENT</div>
+      </div>
+    </div>
+    <div class="row">
       <div v-for="e in events" class="col-12 col-md-3 my-3">
         <EventCard :events="e" />
       </div>

@@ -17,6 +17,12 @@ class EventsService{
     AppState.events = new Event(res.data)
   }
 
+  async create_event(form_data){
+    const res = await api.post('api/events', form_data)
+    AppState.events.push(res.data)
+    return res.data
+  }
+
 
   // TODO Come back to this
   async get_selected_event_tickets(eventId){
