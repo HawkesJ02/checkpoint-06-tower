@@ -10,6 +10,24 @@ class EventsService{
     logger.log(res.data, 'RESPONSE DATA ')
     AppState.events = res.data.map(e => new Event(e))
   }
+
+
+  async get_selected_event(eventId){
+    const res = await api.get('api/events/' + eventId)
+    AppState.events = new Event(res.data)
+  }
+
+
+  // TODO Come back to this
+  async get_selected_event_tickets(eventId){
+   const res = await api.get('api/events/' + eventId + '/tickets')
+   logger.log(res.data)
+  //  AppState.tickets = new Ticket(res.data)
+  }
+
+  dump_events(){
+    AppState.events = []
+  }
 }
 
 export const eventsService = new EventsService()

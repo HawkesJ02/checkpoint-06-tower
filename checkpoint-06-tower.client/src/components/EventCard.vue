@@ -1,8 +1,11 @@
 <template>
   <div class="card p-3">
     <router-link :to="{ name: 'Event', params: { id: events.id } }">
-      <div class="d-flex flex-row">
+      <div class="">
         {{ events.name }}
+        {{ events.location }}
+        {{ events.startDate }}
+        {{ events.capacity }}
       </div>
     </router-link>
 

@@ -1,6 +1,10 @@
 <template>
-  <div v-for="e in events">
-    <EventCard :events="e" />
+  <div class="container">
+    <div class="row">
+      <div v-for="e in events" class="col-12 col-md-3 my-3">
+        <EventCard :events="e" />
+      </div>
+    </div>
   </div>
 </template>
 
