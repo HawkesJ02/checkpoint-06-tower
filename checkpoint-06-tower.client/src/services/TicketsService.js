@@ -4,8 +4,8 @@ import { Event } from "../models/Event.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 class TicketsService{
-  async create_ticket(event_id){
-    const res = await api.post('api/tickets', event_id)
+  async create_ticket(eventId){
+    const res = await api.post('api/tickets', {eventId})
     logger.log('BECOMING TICKET HOLDER HOPEUFLLY', res.data)
 
   }

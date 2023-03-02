@@ -1,9 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-12">
         <EventForm />
-        <div class="btn btn-primary">CREATE EVENT</div>
       </div>
     </div>
     <div class="row">

@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-
+          <CommentsComp />
         </div>
       </div>
     </div>
@@ -28,6 +28,7 @@
 
 <script>
 import { onMounted } from "vue";
+import { watchEffect } from "vue";
 import { onUnmounted } from "vue";
 import { computed } from "vue";
 import { ticketsService } from '../services/TicketsService';
@@ -61,7 +62,7 @@ export default {
       }
     }
 
-    onMounted(() => {
+    watchEffect(() => {
       get_selected_event();
       get_selected_event_tickets();
     })
