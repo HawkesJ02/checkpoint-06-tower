@@ -1,7 +1,8 @@
 <template>
   <div class="component">
-
-
+    <div v-for="c in comments">
+      {{ c.body }}
+    </div>
   </div>
 </template>
 
@@ -35,7 +36,9 @@ export default {
     })
 
     return {
-      comments: computed(() => AppState.comments)
+      comments: computed(() => AppState.comments),
+      account: computed(() => AppState.account),
+      events: computed(() => AppState.events)
     }
   }
 }
