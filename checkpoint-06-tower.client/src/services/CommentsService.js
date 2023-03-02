@@ -18,6 +18,13 @@ class CommentsService {
     return res.data
   }
 
+  async delete_comment(comment_id){
+    const res = await api.delete('api/comments/' + comment_id)
+    logger.log('delted commments?',res.data)
+    return res.data
+    // TODO I dunno like an appstate.splice?? 
+  }
+
   dump_comments(){
     AppState.comments = []
   }

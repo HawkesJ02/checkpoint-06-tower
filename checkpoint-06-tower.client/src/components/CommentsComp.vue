@@ -61,6 +61,17 @@ export default {
       account: computed(() => AppState.account),
       events: computed(() => AppState.events),
 
+      async delete_comment(comment_id) {
+        try {
+          if (await Pop.confirm()) {
+            await commentsService.delete_comment(comment_id)
+          }
+        } catch (error) {
+          Pop.error(error.message)
+          logger.error(error)
+        }
+      },
+
       async handle_submit() {
         try {
           const comment_data = editable.value
