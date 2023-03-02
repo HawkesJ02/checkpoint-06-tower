@@ -7,8 +7,8 @@
           {{ events.description }}
         </div>
         <div class="col-12">
-          <button @click="cancel_selected_event(events.id)" class="btn btn-danger">CANCEL EVENT</button>
-          <button @click="create_ticket(events.id)" class="btn btn-info">Get Tickets</button>
+          <button @click="cancel_selected_event()" class="btn btn-danger">CANCEL EVENT</button>
+          <button @click="create_ticket()" class="btn btn-info">Get Tickets</button>
           <!-- {{ tickets.profile.name }} -->
           <div v-for="t in tickets" class="col-4">
             <img class="img-fluid" :src="t.profile.picture" :alt="t.profile.name + ' picture'" :title="t.profile.name">
@@ -81,6 +81,7 @@ export default {
       async cancel_selected_event() {
         try {
           const event_id = route.params.id
+          logger.log(event_id, 'EVENT ID')
           if (await Pop.confirm()) {
             await eventsService.cancel_selected_event(event_id)
           }
@@ -93,6 +94,7 @@ export default {
       async create_ticket() {
         try {
           const event_id = route.params.id
+          logger.log('event id for ticket', event_id)
           await ticketsService.create_ticket(event_id)
         } catch (error) {
           Pop.error(error.message)

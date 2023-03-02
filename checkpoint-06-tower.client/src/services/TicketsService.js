@@ -5,7 +5,7 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 class TicketsService{
   async create_ticket(eventId){
-    const res = await api.post('api/tickets', eventId)
+    const res = await api.post('api/tickets', { eventId })
     logger.log('BECOMING TICKET HOLDER HOPEUFLLY', res.data)
 
   }
