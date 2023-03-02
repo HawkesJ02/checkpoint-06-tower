@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js"
+import { Ticket } from "../models/Ticket.js"
 import { Event } from "../models/Event.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
@@ -29,23 +30,11 @@ class EventsService{
     AppState.events = new Event(res.data)
   }
 
-
-  // TODO Come back to this
-  async get_selected_event_tickets(eventId){
-   const res = await api.get('api/events/' + eventId + '/tickets')
-   logger.log(res.data)
-  //  AppState.tickets = new Ticket(res.data)
-  }
-
   dump_events(){
     AppState.events = []
   }
 
-  async create_ticket(ticket_data){
-    const res = await api.post('api/tickets', ticket_data)
-    logger.log('BECOMING TICKET HOLDER HOPEUFLLY', res.data)
-    
-  }
+ 
 }
 
 export const eventsService = new EventsService()

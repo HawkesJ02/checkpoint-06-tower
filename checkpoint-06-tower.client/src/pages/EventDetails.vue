@@ -9,6 +9,10 @@
         <div class="col-12">
           <button @click="cancel_selected_event(events.id)" class="btn btn-danger">CANCEL EVENT</button>
           <button @click="create_ticket(events.id)" class="btn btn-info">Get Tickets</button>
+          <!-- {{ tickets.profile.name }} -->
+          <div v-for="t in tickets" class="col-4">
+            <img class="img-fluid" :src="t.profile.picture" :alt="t.profile.name + ' picture'" :title="t.profile.name">
+          </div>
         </div>
       </div>
       <div class="row">
@@ -26,6 +30,7 @@
 import { onMounted } from "vue";
 import { onUnmounted } from "vue";
 import { computed } from "vue";
+import { ticketsService } from '../services/TicketsService';
 import { eventsService } from "../services/EventsService";
 import { logger } from "../utils/Logger";
 import { useRoute } from "vue-router";
@@ -49,7 +54,7 @@ export default {
       try {
         const event_id = route.params.id
         logger.log(event_id)
-        await eventsService.get_selected_event_tickets(event_id)
+        await ticketsService.get_selected_event_tickets(event_id)
       } catch (error) {
         Pop.error(error.message)
         logger.error(error)
@@ -63,9 +68,12 @@ export default {
 
     onUnmounted(() => {
       eventsService.dump_events();
+      ticketsService.dump_tickets();
     })
     return {
       events: computed(() => AppState.events),
+      account: computed(() => AppState.account),
+      tickets: computed(() => AppState.tickets),
 
       async cancel_selected_event() {
         try {
@@ -81,7 +89,8 @@ export default {
 
       async create_ticket() {
         try {
-          await eventsService.create_ticket({ id: route.params.id })
+          const event_id = route.params.id
+          await ticketsService.create_ticket(event_id)
         } catch (error) {
           Pop.error(error.message)
           logger.error(error)
