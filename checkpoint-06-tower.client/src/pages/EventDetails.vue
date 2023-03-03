@@ -27,7 +27,8 @@
             <div class="col-6 text-end">
               <button v-if="events.isCanceled == true || events.capacity == 0" class="btn btn-danger">Event is
                 unavailable</button>
-              <button v-if="events.isCanceled == false" @click="create_ticket()" class="btn btn-info">Get
+              <button v-if="events.isCanceled == false && events.capacity >= 1 && !foundTicket" @click="create_ticket()"
+                class="btn btn-info">Get
                 Tickets</button>
               <!-- <div v-for="t in tickets">
                 <div v-if="t.accountId === account.id">hi</div>
@@ -46,7 +47,6 @@
     </div>
     <div class="container-fluid p-0 my-3 card">
       <div class="d-flex flex-row">
-        <!-- {{ tickets.profile.name }} -->
         <div v-for="t in tickets" class="p-2 profile-picture">
           <img class="img-fluid" :src="t.profile.picture" :alt="t.profile.name + ' picture'" :title="t.profile.name">
           <button @click="delete_ticket(t.id)" v-if="t.accountId == account.id">Revoke Ticket</button>
@@ -88,6 +88,14 @@ export default {
       }
     }
 
+    async function events_with_my_ticket() {
+      try {
+        await ticketsService.get_events_by_my_ticket()
+      } catch (error) {
+        Pop.error(error.message)
+        logger.error(error)
+      }
+    }
 
     async function get_selected_event_tickets() {
       try {
@@ -103,6 +111,7 @@ export default {
     watchEffect(() => {
       get_selected_event();
       get_selected_event_tickets();
+      // events_with_my_ticket();
     })
 
     onUnmounted(() => {
@@ -114,6 +123,7 @@ export default {
       events: computed(() => AppState.events),
       account: computed(() => AppState.account),
       tickets: computed(() => AppState.tickets),
+      foundTicket: computed(() => AppState.tickets.find(t => t.eventId == AppState.events.id)),
 
       async cancel_selected_event() {
         try {

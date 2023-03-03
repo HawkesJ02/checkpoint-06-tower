@@ -26,6 +26,7 @@
         <label for="type" class="form-label">Type:</label>
         <select name="type" v-model="editable.type" id="type">
           <option value="sport">Sport</option>
+          <option value="concert">Concert</option>
           <option value="convention">Convention</option>
           <option value="digital">Digital</option>
         </select>

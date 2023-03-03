@@ -4,9 +4,9 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-
-  <div>
-
+  <div v-for="t in myTickets" class="col-12 col-md-3 my-3">
+    <EventCard :events="t.event[0]" />
+    {{ t.eventId }}
   </div>
 </template>
 
@@ -19,10 +19,9 @@ import Pop from "../utils/Pop"
 export default {
   setup() {
 
-    async function get_events_by_my_ticket() {
+    async function events_with_my_ticket() {
       try {
-        const ticketId = AppState.account.id
-        await ticketsService.get_events_by_my_ticket(ticketId)
+        await ticketsService.get_events_by_my_ticket()
       } catch (error) {
         Pop.error(error.message)
         logger.error(error)
@@ -30,13 +29,14 @@ export default {
     }
 
     onMounted(() => {
-      get_events_by_my_ticket();
+      events_with_my_ticket();
     })
 
 
     return {
       account: computed(() => AppState.account),
       events: computed(() => AppState.events),
+      myTickets: computed(() => AppState.myTickets),
     }
   }
 }

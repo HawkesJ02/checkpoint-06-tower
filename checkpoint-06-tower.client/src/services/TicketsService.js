@@ -20,8 +20,13 @@ class TicketsService{
     AppState.tickets = res.data.map(t => new Ticket(t))
    }
 
-   async get_events_by_my_ticket(ticketId){
-    
+   async get_events_by_my_ticket(){
+    const res = await api.get('account/tickets')
+    logger.log(res.data, 'GOTTEN TICKETS FOR MYSELF')
+    AppState.myTickets = res.data
+    logger.log(AppState.myTickets, 'APPSTATE GOTTEN TICKETS FOR MYSELF')
+
+
    }
 
    dump_tickets(){
