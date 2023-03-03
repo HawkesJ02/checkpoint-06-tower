@@ -8,17 +8,19 @@
         </div>
         <div class="col-7">
           <div class="row justify-content-between">
-            <div class="col-6 fs-4"> {{ events.name }} </div>
+            <div class="col-6 fs-2"> {{ events.name }} </div>
             <div class="col-6 text-end"> Starts: {{ events.startDate }} </div>
           </div>
           <div class="row justify-content-between">
-            <div class="col-6 fs-5"> {{ events.location }} </div>
+            <div class="col-6 fs-5"> Where?: {{ events.location }} </div>
           </div>
           <div class="row">
             <div class="col-12">
+              <b>{{ events.type }}</b>
               <div class="py-2">
                 {{ events.description }}
               </div>
+
             </div>
           </div>
           <div class="row mt-5 justify-content-between">
