@@ -1,12 +1,17 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
+  <div class="about text-center text-light">
+    <h1>{{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
-  <div v-for="t in myTickets" class="col-12 col-md-3 my-3">
-    <EventCard :event="t.event[0]" />
-    {{ t.eventId }}
+  <h1 class="m-2 text-light">
+    Your Events:
+  </h1>
+  <div class="d-flex flex-row">
+    <div v-for="t in myTickets" class="mx-3">
+      <EventCard :event="t.event[0]" />
+      {{ t.eventId }}
+    </div>
   </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template class="bg-custom">
   <div class="container-fluid">
     <div class="row">
-      <div v-if="user.id != null" class="col-12">
-        <EventForm />
+      <div class="col-12 my-4 d-flex justify-content-center">
+        <h2 class="bg-light text-dark rounded p-3">TOWER EVENTS</h2>
       </div>
       <div class="col-12">
-        <div class="bg-primary rounded p-3 d-flex justify-content-around">
+        <div class="bg-black rounded p-3 d-flex justify-content-around my-3">
           <button @click="change_filter('')" class="btn btn-outline-light">All</button>
           <button @click="change_filter('sport')" class="btn btn-outline-light">Sport</button>
           <button @click="change_filter('digital')" class="btn btn-outline-light">Digital</button>
@@ -18,6 +18,9 @@
       <div v-if="events" v-for="e in events" class="col-12 col-md-3 my-3">
         <EventCard :event="e" />
       </div>
+    </div>
+    <div v-if="user.id != null" class="col-12">
+      <EventForm />
     </div>
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
-  <main>
+  <main class="bg-dark text-dark">
     <router-view />
   </main>
 </template>

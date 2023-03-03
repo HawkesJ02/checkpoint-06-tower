@@ -1,6 +1,10 @@
 <template>
   <div class="card p-3 my-3">
-    <div><img :src="account.picture" class="profile-picture">
+    <div>
+      <div class="mb-2">
+        <img :src="account.picture" class="profile-picture">
+      </div>
+      <h3 class="text-center">Make an event!</h3>
       <form @submit.prevent="handle_submit">
         <div class="">
           <label for="body" class="form-label"></label>
@@ -20,12 +24,12 @@
         <textarea name="description" id="description" v-model="editable.description" cols="20" rows="5"
           placeholder="What's the event?" class="form-control"></textarea>
         <label for="capacity" class="form-label"></label>
-        <input type="number" v-model="editable.capacity" class="form-control" id="capacity" placeholder="Capacity...?"
-          name="name">
+        <input type="number" v-model="editable.capacity" class="form-control mb-3" id="capacity"
+          placeholder="Capacity...?" name="name">
 
-        <label for="type" class="form-label">Type:</label>
-        <select name="type" v-model="editable.type" id="type">
-          <option value="sport">Sport</option>
+        <label for="type" class="form-label">Type: </label>
+        <select class="form-select mb-3" name="type" v-model="editable.type" id="type">
+          <option selected value="sport">Sport</option>
           <option value="concert">Concert</option>
           <option value="convention">Convention</option>
           <option value="digital">Digital</option>

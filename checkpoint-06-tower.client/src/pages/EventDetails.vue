@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="row mt-5 justify-content-between">
-            <div v-if="events.isCanceled == false" class="col-6 text-start"> {{ events.capacity }}</div>
+            <div v-if="events.isCanceled == false" class="col-6 text-start"> Capacity left: {{ events.capacity }}</div>
             <div v-else class="col-6 text-start"> <span class="fs-2 text-danger"> EVENT IS CANCELLED!</span> </div>
             <div class="col-6 text-end">
               <button v-if="events.isCanceled == true || events.capacity == 0" class="btn btn-danger">Event is

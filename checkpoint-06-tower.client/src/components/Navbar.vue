@@ -1,9 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        HOME
-      </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black px-3 sticky-top">
+    <router-link class="navbar-brand d-flex btn text-white lighten-30 selectable text-uppercase" :to="{ name: 'Home' }">
+      HOME
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'Account' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Account' }" class="btn text-white lighten-30 selectable text-uppercase">
             Account
           </router-link>
         </li>

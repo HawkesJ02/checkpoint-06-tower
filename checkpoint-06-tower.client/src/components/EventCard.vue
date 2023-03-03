@@ -4,10 +4,16 @@
       <div class="">
         <img v-if="event.isCanceled == false" class="event-img" :src="event.coverImg" alt="">
         <img v-else class="event-img-c" :src="event.coverImg" alt="">
-        {{ event.name }}
-        {{ event.location }}
-        {{ event.startDate }}
-        {{ event.capacity }}
+        <div class="d-flex flew-row">
+          <div class="p-2">
+            {{ event.name }}
+          </div>
+          <div class="p-2">
+            Seats: {{ event.capacity }}
+          </div>
+
+
+        </div>
 
       </div>
     </router-link>
