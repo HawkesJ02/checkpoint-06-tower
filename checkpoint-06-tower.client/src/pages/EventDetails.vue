@@ -3,7 +3,8 @@
     <div class="container-fluid card mt-3">
       <div class="row">
         <div class="col-5 p-0">
-          <img class="img-fluid" :src="events.coverImg" alt="">
+          <img v-if="events.isCanceled == false" class="img-fluid" :src="events.coverImg" alt="">
+          <img v-else class="img-fluid event-img-c" :src="events.coverImg" alt="">
         </div>
         <div class="col-7">
           <div class="row justify-content-between">
@@ -21,11 +22,19 @@
             </div>
           </div>
           <div class="row mt-5 justify-content-between">
-            <div class="col-6 text-start"> {{ events.capacity }}</div>
+            <div v-if="events.isCanceled == false" class="col-6 text-start"> {{ events.capacity }}</div>
+            <div v-else class="col-6 text-start"> <span class="fs-2 text-danger"> EVENT IS CANCELLED!</span> </div>
             <div class="col-6 text-end">
-              <button @click="create_ticket()" class="btn btn-info">Get Tickets</button>
-              <button v-if="events.creatorId === account.id" @click="cancel_selected_event()"
-                class="btn btn-danger">CANCEL
+              <button v-if="events.isCanceled == true || events.capacity == 0" class="btn btn-danger">Event is
+                unavailable</button>
+              <button v-if="events.isCanceled == false" @click="create_ticket()" class="btn btn-info">Get
+                Tickets</button>
+              <!-- <div v-for="t in tickets">
+                <div v-if="t.accountId === account.id">hi</div>
+                <div v-else>REEEAA</div>
+              </div> -->
+              <button v-if="events.creatorId === account.id && events.isCanceled == false"
+                @click="cancel_selected_event()" class="btn btn-danger">CANCEL
                 EVENT</button>
             </div>
           </div>
@@ -127,6 +136,15 @@ export default {
           Pop.error(error.message)
           logger.error(error)
         }
+      },
+
+      async delete_ticket(ticketId) {
+        try {
+          await ticketsService.delete_ticket(ticketId)
+        } catch (error) {
+          Pop.error(error.message)
+          logger.error(error)
+        }
       }
 
     }
@@ -140,5 +158,9 @@ export default {
   height: 8vh;
   width: 8vh;
   border-radius: 50%;
+}
+
+.event-img-c {
+  filter: blur(6px);
 }
 </style>

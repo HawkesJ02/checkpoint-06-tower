@@ -7,7 +7,11 @@ class TicketsService{
   async create_ticket(eventId){
     const res = await api.post('api/tickets', { eventId })
     logger.log('BECOMING TICKET HOLDER HOPEUFLLY', res.data)
+  }
 
+  async delete_ticket(ticketId){
+    const res = await api.delete('api/tickets/' + ticketId)
+    return res.data 
   }
 
   async get_selected_event_tickets(eventId){
