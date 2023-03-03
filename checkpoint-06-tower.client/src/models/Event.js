@@ -8,6 +8,7 @@ export class Event {
     this.description = data.description
     this.coverImg = data.coverImg
     this.location = data.location
+    this.type = data.type
     this.capacity = data.capacity
     this.startDate = data.startDate 
     this.isCanceled = data.isCanceled

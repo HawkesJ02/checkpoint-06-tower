@@ -11,6 +11,7 @@ export const EventSchema = new Schema({
   type: {type: String},
   isCanceled: {type: Boolean, required: true, default: false},
   creatorId: {type: Schema.Types.ObjectId, ref: 'Account', required: true}
+  
 
 
 }, { timestamps: true, toJSON: { virtuals: true } } )

@@ -1,13 +1,13 @@
 <template>
-  <div class="card event-img">
+  <div class="card">
     <router-link :to="{ name: 'Event', params: { id: events.id } }">
       <div class="">
-        <img :src="events.coverImg" alt="">
+        <img v-if="events.isCanceled == false" class="event-img" :src="events.coverImg" alt="">
+        <img v-else class="event-img-c" :src="events.coverImg" alt="">
         {{ events.name }}
         {{ events.location }}
         {{ events.startDate }}
         {{ events.capacity }}
-        <div v-if="events.isCanceled == true"> EVENT IS DEAD AAAA</div>
       </div>
     </router-link>
 
@@ -44,7 +44,14 @@ export default {
   height: 100%;
   width: 100%;
   object-fit: cover;
-
   overflow: hidden;
+}
+
+.event-img-c {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  filter: blur(6px);
 }
 </style>

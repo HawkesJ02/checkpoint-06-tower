@@ -1,27 +1,54 @@
 <template>
   <div class="component">
-    <div class="container">
+    <div class="container-fluid card mt-3">
       <div class="row">
-        <div class="col-12">
-          {{ events.name }}
-          {{ events.description }}
+        <div class="col-5 p-0">
+          <img class="img-fluid" :src="events.coverImg" alt="">
         </div>
-        <div class="col-12">
-          <button @click="cancel_selected_event()" class="btn btn-danger">CANCEL EVENT</button>
-          <button @click="create_ticket()" class="btn btn-info">Get Tickets</button>
-          <!-- {{ tickets.profile.name }} -->
-          <div v-for="t in tickets" class="col-4">
-            <img class="img-fluid" :src="t.profile.picture" :alt="t.profile.name + ' picture'" :title="t.profile.name">
+        <div class="col-7">
+          <div class="row justify-content-between">
+            <div class="col-6 fs-4"> {{ events.name }} </div>
+            <div class="col-6 text-end"> Starts: {{ events.startDate }} </div>
           </div>
+          <div class="row justify-content-between">
+            <div class="col-6 fs-5"> {{ events.location }} </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="py-2">
+                {{ events.description }}
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5 justify-content-between">
+            <div class="col-6 text-start"> {{ events.capacity }}</div>
+            <div class="col-6 text-end">
+              <button @click="create_ticket()" class="btn btn-info">Get Tickets</button>
+              <button v-if="events.creatorId === account.id" @click="cancel_selected_event()"
+                class="btn btn-danger">CANCEL
+                EVENT</button>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <CommentsComp />
-        </div>
+
+
       </div>
     </div>
+    <div class="container-fluid p-0 my-3 card">
+      <div class="d-flex flex-row">
+        <!-- {{ tickets.profile.name }} -->
+        <div v-for="t in tickets" class="p-2 profile-picture">
+          <img class="img-fluid" :src="t.profile.picture" :alt="t.profile.name + ' picture'" :title="t.profile.name">
+        </div>
 
+      </div>
+    </div>
+    <div class="container-fluid p-0">
+      <div class="card">
+        <CommentsComp />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -108,4 +135,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.profile-picture {
+  height: 8vh;
+  width: 8vh;
+  border-radius: 50%;
+}
+</style>

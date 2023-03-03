@@ -1,10 +1,11 @@
 <template>
-  <div class="card my-3">
-    <div v-for="c in comments">
-      {{ c.body }}
-      {{ c.creator.name }}
-      <div v-if="c.creatorId === account.id">
-        <button @click="delete_comment(c.id)" class="btn btn-danger">DELETE COMMENT {{ c.id }}</button>
+  <div>
+    <div v-for="c in comments" class="p-3">
+      <div class=" d-flex flex-row">
+        {{ c.creator.name }} wrote: {{ c.body }}
+        <button @click="delete_comment(c.id)" v-if="c.creatorId == account.id" class="btn btn-danger"> <i
+            class="mdi mdi-trash-can">Delete
+            Comment</i></button>
       </div>
     </div>
   </div>

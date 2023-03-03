@@ -22,6 +22,14 @@
         <label for="capacity" class="form-label"></label>
         <input type="number" v-model="editable.capacity" class="form-control" id="capacity" placeholder="Capacity...?"
           name="name">
+
+        <label for="type" class="form-label">Type:</label>
+        <select name="type" v-model="editable.type" id="type">
+          <option value="sport">Sport</option>
+          <option value="convention">Convention</option>
+          <option value="digital">Digital</option>
+        </select>
+
         <div class="d-flex flex-row-reverse mb-2">
           <button type="submit" class="btn btn-primary"> Create Event
           </button>
