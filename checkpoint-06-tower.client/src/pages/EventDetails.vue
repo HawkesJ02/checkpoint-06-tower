@@ -49,6 +49,7 @@
         <!-- {{ tickets.profile.name }} -->
         <div v-for="t in tickets" class="p-2 profile-picture">
           <img class="img-fluid" :src="t.profile.picture" :alt="t.profile.name + ' picture'" :title="t.profile.name">
+          <button @click="delete_ticket(t.id)" v-if="t.accountId == account.id">Revoke Ticket</button>
         </div>
 
       </div>
