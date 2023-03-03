@@ -1,13 +1,14 @@
 <template>
-  <div class="card">
-    <router-link :to="{ name: 'Event', params: { id: events.id } }">
+  <div v-if="event?.id" class="card">
+    <router-link :to="{ name: 'Event', params: { id: event.id } }">
       <div class="">
-        <img v-if="events.isCanceled == false" class="event-img" :src="events.coverImg" alt="">
-        <img v-else class="event-img-c" :src="events.coverImg" alt="">
-        {{ events.name }}
-        {{ events.location }}
-        {{ events.startDate }}
-        {{ events.capacity }}
+        <img v-if="event.isCanceled == false" class="event-img" :src="event.coverImg" alt="">
+        <img v-else class="event-img-c" :src="event.coverImg" alt="">
+        {{ event.name }}
+        {{ event.location }}
+        {{ event.startDate }}
+        {{ event.capacity }}
+
       </div>
     </router-link>
 
@@ -19,10 +20,11 @@
 import { AppState } from "../AppState";
 import { Event } from "../models/Event";
 import { computed } from 'vue';
+import { useRoute } from "vue-router";
 
 export default {
   props: {
-    events: {
+    event: {
       type: Event,
       required: true
     },
@@ -35,6 +37,7 @@ export default {
     }
   }
 }
+
 </script>
 
 

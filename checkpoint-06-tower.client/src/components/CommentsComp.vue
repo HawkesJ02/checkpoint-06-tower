@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-for="c in comments" class="p-3">
-      <div class=" d-flex flex-row">
+      <div class=" d-flex flex-row ">
+        <img :src="c.creator.picture" class="profile-pic" alt="">
         {{ c.creator.name }} wrote: {{ c.body }}
         <button @click="delete_comment(c.id)" v-if="c.creatorId == account.id" class="btn btn-danger"> <i
             class="mdi mdi-trash-can">Delete
@@ -89,4 +90,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.profile-pic {
+  height: 3vh;
+  width: 3vh;
+  border-radius: 50%;
+}
+</style>

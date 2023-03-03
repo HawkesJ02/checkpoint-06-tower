@@ -5,7 +5,7 @@
     <p>{{ account.email }}</p>
   </div>
   <div v-for="t in myTickets" class="col-12 col-md-3 my-3">
-    <EventCard :events="t.event[0]" />
+    <EventCard :event="t.event[0]" />
     {{ t.eventId }}
   </div>
 </template>

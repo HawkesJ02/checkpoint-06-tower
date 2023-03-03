@@ -1,5 +1,5 @@
 <template>
-  <div class="component">
+  <div v-if="events" class="component">
     <div class="container-fluid card mt-3">
       <div class="row">
         <div class="col-5 p-0">
@@ -88,15 +88,6 @@ export default {
       }
     }
 
-    async function events_with_my_ticket() {
-      try {
-        await ticketsService.get_events_by_my_ticket()
-      } catch (error) {
-        Pop.error(error.message)
-        logger.error(error)
-      }
-    }
-
     async function get_selected_event_tickets() {
       try {
         const event_id = route.params.id
@@ -111,19 +102,18 @@ export default {
     watchEffect(() => {
       get_selected_event();
       get_selected_event_tickets();
-      // events_with_my_ticket();
     })
 
-    onUnmounted(() => {
-      eventsService.dump_events();
-      ticketsService.dump_tickets();
-      commentsService.dump_comments();
-    })
+    // onUnmounted(() => {
+    //   eventsService.dump_events();
+    //   ticketsService.dump_tickets();
+    //   commentsService.dump_comments();
+    // })
     return {
-      events: computed(() => AppState.events),
+      events: computed(() => AppState.event),
       account: computed(() => AppState.account),
       tickets: computed(() => AppState.tickets),
-      foundTicket: computed(() => AppState.tickets.find(t => t.eventId == AppState.events.id)),
+      foundTicket: computed(() => AppState.tickets.find(t => t.eventId == AppState.event.id)),
 
       async cancel_selected_event() {
         try {

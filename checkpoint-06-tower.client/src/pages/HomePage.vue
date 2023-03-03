@@ -1,7 +1,7 @@
 <template class="bg-custom">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div v-if="user.id != null" class="col-12">
         <EventForm />
       </div>
       <div class="col-12">
@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="row">
-      <div v-for="e in events" class="col-12 col-md-3 my-3">
-        <EventCard :events="e" />
+      <div v-if="events" v-for="e in events" class="col-12 col-md-3 my-3">
+        <EventCard :event="e" />
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@ import EventCard from "../components/EventCard.vue"
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { eventsService } from "../services/EventsService.js"
-import { onMounted, computed, ref } from "vue";
+import { watchEffect, computed, ref, onMounted } from "vue";
 import { AppState } from "../AppState.js";
 
 
@@ -46,10 +46,16 @@ export default {
 
     onMounted(() => {
       get_all_events()
+    })
+
+    watchEffect(() => {
+      get_all_events()
       computed(() => AppState.account)
+      computed(() => AppState.user)
     })
 
     return {
+      user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       events: computed(() => {
         if (!filter.value) {

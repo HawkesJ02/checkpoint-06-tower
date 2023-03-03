@@ -20,9 +20,11 @@ class CommentsService {
 
   async delete_comment(comment_id){
     const res = await api.delete('api/comments/' + comment_id)
-    logger.log('delted commments?',res.data)
+   const found_comment = AppState.comments.findIndex(c => c.id == comment_id)
+   if (found_comment !== -1) {
+    AppState.comments.splice(found_comment, 1)
+   }
     return res.data
-    // TODO I dunno like an appstate.splice?? 
   }
 
   dump_comments(){

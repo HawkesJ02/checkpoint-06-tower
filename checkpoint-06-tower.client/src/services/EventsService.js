@@ -16,7 +16,7 @@ class EventsService{
 
   async get_selected_event(eventId){
     const res = await api.get('api/events/' + eventId)
-    AppState.events = new Event(res.data)
+    AppState.event = new Event(res.data)
   }
 
   async create_event(form_data){
@@ -30,7 +30,7 @@ class EventsService{
   async cancel_selected_event(event_id){
     const res = await api.delete('api/events/' + event_id)
     logger.log('CANCELED EVENT', res.data)
-    AppState.events = new Event(res.data)
+    AppState.event = new Event(res.data)
   }
 
   dump_events(){

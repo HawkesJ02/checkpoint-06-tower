@@ -6,11 +6,15 @@ import { api } from "./AxiosService.js"
 class TicketsService{
   async create_ticket(eventId){
     const res = await api.post('api/tickets', { eventId })
-    logger.log('BECOMING TICKET HOLDER HOPEUFLLY', res.data)
+    AppState.tickets.push(new Ticket(res.data))
   }
 
   async delete_ticket(ticketId){
     const res = await api.delete('api/tickets/' + ticketId)
+    const foundticket = AppState.tickets.findIndex(t => t.id == ticketId)
+    if (foundticket !== -1) {
+      AppState.tickets.splice(foundticket, 1)
+    }
     return res.data 
   }
 
