@@ -20,6 +20,10 @@ class TicketsService{
     AppState.tickets = res.data.map(t => new Ticket(t))
    }
 
+   async get_events_by_my_ticket(ticketId){
+    
+   }
+
    dump_tickets(){
     AppState.tickets = []
    }

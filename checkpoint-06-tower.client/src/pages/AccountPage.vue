@@ -4,15 +4,39 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
+
+  <div>
+
+  </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, watchEffect, onMounted } from 'vue'
 import { AppState } from '../AppState'
+import { ticketsService } from "../services/TicketsService"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 export default {
   setup() {
+
+    async function get_events_by_my_ticket() {
+      try {
+        const ticketId = AppState.account.id
+        await ticketsService.get_events_by_my_ticket(ticketId)
+      } catch (error) {
+        Pop.error(error.message)
+        logger.error(error)
+      }
+    }
+
+    onMounted(() => {
+      get_events_by_my_ticket();
+    })
+
+
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      events: computed(() => AppState.events),
     }
   }
 }
