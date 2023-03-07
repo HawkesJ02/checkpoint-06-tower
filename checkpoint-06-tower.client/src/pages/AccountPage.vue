@@ -7,7 +7,7 @@
   <h1 class="m-2 text-light">
     Your Events:
   </h1>
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row img-fluid">
     <div v-for="t in myTickets" class="mx-3">
       <EventCard :event="t.event[0]" />
       {{ t.eventId }}

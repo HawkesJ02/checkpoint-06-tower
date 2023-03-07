@@ -115,7 +115,7 @@ export default {
       events: computed(() => AppState.event),
       account: computed(() => AppState.account),
       tickets: computed(() => AppState.tickets),
-      foundTicket: computed(() => AppState.tickets.find(t => t.eventId == AppState.event.id)),
+      foundTicket: computed(() => AppState.tickets.find(t => t.accountId == AppState.account.id)),
 
       async cancel_selected_event() {
         try {
