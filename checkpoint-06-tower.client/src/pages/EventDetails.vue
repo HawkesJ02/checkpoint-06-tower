@@ -58,7 +58,8 @@
     </div>
     <div class="container-fluid p-0">
       <div class="card">
-        <CommentsComp />
+        <!-- TODO LOOK HERE! -->
+        <CommentsComp :comments="comments" />
       </div>
     </div>
   </div>
